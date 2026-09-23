@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to Roswell Hotel. Enjoy comfort, luxury and unforgettable hospitality.">
+    <title>Roswell Hotel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 20px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+        header {
+            width: 100%;
+            background: white;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .umarlogo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .umarlogo img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 5%;
+            background: #102a43;
+        }
+
+        .logo {
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #d4a75b;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            display: block;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4a75b;
+        }
+
+        .book-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #d4a75b;
+            color: #102a43;
+            font-weight: bold;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+
+        .book-btn:hover {
+            background: white;
+        }
+
+        /* Hamburger button */
+        .menu-toggle {
+            display: none;
+            color: white;
+            background: transparent;
+            border: 2px solid white;
+            border-radius: 5px;
+            width: 44px;
+            height: 42px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+        .hero {
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.55)
+                ),
+                url("https://images.unsplash.com/photo-1566073771259-6a8506099945")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .welcome {
+            color: #d4a75b;
+            font-weight: bold;
+            font-size: 18px;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin: 15px 0;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .main-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #d4a75b;
+            color: #102a43;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .main-btn:hover {
+            background: white;
+        }
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            padding: 80px 8%;
+        }
+
+        .about-image,
+        .about-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            color: #c18b36;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .about-text h2,
+        .heading h2 {
+            color: #102a43;
+            font-size: 34px;
+            margin: 10px 0 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        .rooms {
+            padding: 80px 5%;
+            background: #f5f7fa;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .room-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .room-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .room-info {
+            padding: 25px;
+        }
+
+        .room-info h3 {
+            color: #102a43;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .room-info p {
+            margin-bottom: 15px;
+        }
+
+        .room-info h4 {
+            color: #c18b36;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .room-info h4 span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .room-info a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #102a43;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .room-info a:hover {
+            background: #d4a75b;
+            color: #102a43;
+        }
+        .services {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .service-card {
+            padding: 30px 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .service-card .service-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            color: #102a43;
+            margin-bottom: 10px;
+        }
+        .contact {
+            padding: 70px 5%;
+            background: #f5f7fa;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 35px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-info {
+            padding: 40px 30px;
+            background: #102a43;
+            color: white;
+        }
+
+        .contact-info h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-form {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid #d4a75b;
+            border-color: #d4a75b;
+        }
+
+        .submit-btn {
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .error {
+            display: block;
+            color: #c62828;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .form-message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .booking {
+            padding: 70px 20px;
+            text-align: center;
+            background: #102a43;
+            color: white;
+        }
+
+        .booking h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        footer {
+            padding: 25px 15px;
+            text-align: center;
+            background: #081b2c;
+            color: white;
+        }
+        @media (max-width: 1000px) {
+            .navbar {
+                padding: 15px 3%;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .book-btn {
+                padding: 9px 12px;
+                font-size: 14px;
+            }
+
+            .about {
+                padding: 60px 5%;
+                gap: 30px;
+            }
+
+            .room-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .service-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 768px) {
+            /* Navbar layout */
+            .navbar {
+                flex-wrap: wrap;
+                padding: 12px 5%;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            /* Show hamburger */
+            .menu-toggle {
+                display: block;
+                margin-left: auto;
+            }
+
+            /* Hide menu initially */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                width: 100%;
+                margin-top: 12px;
+            }
+
+            /* Show menu after clicking */
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid rgba(255,255,255,0.15);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 13px;
+                font-size: 16px;
+            }
+
+            .nav-links a:hover {
+                background: #1b405c;
+            }
+
+            /* Mobile booking button */
+            .book-btn {
+                display: none;
+            }
+
+            /* Hero */
+            .hero {
+                min-height: 420px;
+                padding: 45px 20px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            /* About */
+            .about {
+                flex-direction: column;
+                padding: 50px 6%;
+                gap: 30px;
+            }
+
+            .about-image,
+            .about-text {
+                width: 100%;
+            }
+
+            .about-image img {
+                height: 280px;
+            }
+
+            .about-text h2,
+            .heading h2 {
+                font-size: 28px;
+            }
+
+            /* Rooms */
+            .rooms {
+                padding: 50px 6%;
+            }
+
+            .room-container {
+                grid-template-columns: 1fr;
+            }
+
+            .room-card img {
+                height: 240px;
+            }
+
+            /* Services */
+            .services {
+                padding: 50px 6%;
+            }
+
+            .service-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* Contact */
+            .contact {
+                padding: 50px 6%;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 30px 22px;
+            }
+
+            .booking h2 {
+                font-size: 28px;
+            }
+        }
+        @media (max-width: 400px) {
+            .umarlogo img {
+                width: 85px;
+                height: 85px;
+            }
+
+            .navbar {
+                padding: 10px 4%;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .menu-toggle {
+                width: 40px;
+                height: 38px;
+                font-size: 23px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .welcome {
+                font-size: 14px;
+            }
+
+            .about-text h2,
+            .heading h2 {
+                font-size: 25px;
+            }
+
+            .room-info {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+        <!-- Hotel Logo -->
+        <div class="umarlogo">
+            <a href="#home">
+                <img src="images/pic1.jpg"
+                     alt="Roswell Hotel Logo">
+            </a>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+
+            <div class="logo">
+                Roswell <span>Hotel</span>
+            </div>
+
+            <!-- Hamburger Button -->
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navLinks">
+                ☰
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="navLinks">
+
+                <li><a href="#home">Home</a></li>
+
+                <li><a href="#about">About</a></li>
+
+                <li><a href="#rooms">Rooms</a></li>
+
+                <li><a href="file:///C:/xampp/htdocs/business-website/services.html">Services</a></li>
+
+                <li><a href="file:///C:/xampp/htdocs/business-website/contact.html"></a></li>
+
+            </ul>
+
+            <!-- Desktop Booking Button -->
+            <a href="file:///C:/xampp/htdocs/business-website/services.html" class="book-btn">
+                Book Now
+            </a>
+
+        </nav>
+
+    </header>
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="welcome">WELCOME TO</p>
+
+            <h1>Roswell Hotel</h1>
+
+            <p>
+                Experience comfort, luxury and unforgettable
+                hospitality at Roswell Hotel.
+            </p>
+
+            <a href="file:///C:/xampp/htdocs/business-website/contact.html" class="main-btn">
+                Book Your Stay
+            </a>
+
+        </div>
+
+    </section>
+    <section class="about" id="about">
+
+        <div class="about-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1566073771259-6a8506099945"
+                alt="Roswell Hotel">
+
+        </div>
+
+        <div class="about-text">
+
+            <p class="section-title">ABOUT US</p>
+
+            <h2>Welcome to Roswell Hotel</h2>
+
+            <p>
+                Roswell Hotel provides a comfortable and relaxing
+                environment for families, business travelers
+                and tourists. Our goal is to make every guest
+                feel at home.
+            </p>
+
+            <p>
+                Enjoy beautifully designed rooms, delicious food
+                and friendly service during your stay.
+            </p>
+
+            <a href="#rooms" class="main-btn">
+                Explore Rooms
+            </a>
+
+        </div>
+
+    </section>
+    <section class="rooms" id="rooms">
+
+        <div class="heading">
+
+            <p class="section-title">OUR ROOMS</p>
+
+            <h2>Choose Your Room</h2>
+
+        </div>
+
+        <div class="room-container">
+
+            <!-- Single Room -->
+            <div class="room-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1611892440504-42a792e24d32"
+                    alt="Single Room">
+
+                <div class="room-info">
+
+                    <h3>Single Room</h3>
+
+                    <p>
+                        Comfortable room for one guest
+                        with modern facilities.
+                    </p>
+
+                    <h4>
+                        $50 <span>/ Night</span>
+                    </h4>
+
+                    <a href="#contact">
+                        Book Room
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Double Room -->
+            <div class="room-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b"
+                    alt="Double Room">
+
+                <div class="room-info">
+
+                    <h3>Double Room</h3>
+
+                    <p>
+                        Spacious room perfect for couples
+                        or two guests.
+                    </p>
+
+                    <h4>
+                        $80 <span>/ Night</span>
+                    </h4>
+
+                    <a href="#contact">
+                        Book Room
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Luxury Suite -->
+            <div class="room-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
+                    alt="Luxury Suite">
+
+                <div class="room-info">
+
+                    <h3>Luxury Suite</h3>
+
+                    <p>
+                        Premium suite with elegant design
+                        and extra comfort.
+                    </p>
+
+                    <h4>
+                        $120 <span>/ Night</span>
+                    </h4>
+
+                    <a href="#contact">
+                        Book Room
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section class="services" id="services">
+
+        <div class="heading">
+
+            <p class="section-title">OUR SERVICES</p>
+
+            <h2>What We Offer</h2>
+
+        </div>
+
+        <div class="service-container">
+
+            <div class="service-card">
+                <div class="service-icon">🛏️</div>
+                <h3>Comfortable Rooms</h3>
+                <p>
+                    Relax in our comfortable and
+                    beautifully designed rooms.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🍽️</div>
+                <h3>Restaurant</h3>
+                <p>
+                    Enjoy delicious meals and
+                    friendly dining service.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📶</div>
+                <h3>Free Wi-Fi</h3>
+                <p>
+                    Stay connected during your
+                    visit with internet access.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="contact" id="contact">
+
+        <div class="heading">
+
+            <p class="section-title">CONTACT US</p>
+
+            <h2>Get In Touch</h2>
+
+        </div>
+
+        <div class="contact-container">
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+
+                <h3>Contact Information</h3>
+
+                <p>
+                    Have questions about our rooms
+                    or services? Contact us.
+                </p>
+
+                <p>
+                    <strong>Hotel:</strong>
+                    Roswell Hotel
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    info@roswellhotel.com
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    +92 302343950
+                </p>
+
+                <p>
+                    <strong>Address:</strong>
+                    Gujranwala,Punjab, Pakistan
+                </p>
+
+            </div>
+
+            <!-- Contact Form -->
+            <form class="contact-form"
+                  id="myForm"
+                  action="contact.php"
+                  method="POST">
+
+                <div class="form-group">
+
+                    <label for="name">Your Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                        minlength="3">
+
+                    <span class="error" id="nameError"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">Your Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+
+                    <span class="error" id="emailError"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="phone">Your Phone Number</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter phone number"
+                        required
+                        pattern="[0-9]{10,15}"
+                        title="Enter 10 to 15 digits">
+
+                    <span class="error" id="phoneError"></span>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="message">Your Message</label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Write your message"
+                        required></textarea>
+
+                    <span class="error" id="messageError"></span>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="main-btn submit-btn">
+                    Send Message
+                </button>
+
+                <p class="form-message"
+                   id="formMessage"
+                   aria-live="polite"></p>
+
+            </form>
+
+        </div>
+
+    </section>
+    <section class="booking">
+
+        <h2>Book Your Stay</h2>
+
+        <p>
+            Contact us today to plan your comfortable stay.
+        </p>
+
+        <a href="#contact" class="main-btn">
+            Contact Us
+        </a>
+
+    </section>
+    <footer>
+
+        <p>
+            &copy; 2026 Roswell Hotel.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+    <script>
+
+        /* MOBILE NAVIGATION */
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        // Open and close hamburger menu
+        menuToggle.addEventListener("click", function () {
+
+            const isOpen =
+                navLinks.classList.toggle("active");
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen
+                    ? "Close navigation menu"
+                    : "Open navigation menu"
+            );
+
+            menuToggle.textContent =
+                isOpen ? "✕" : "☰";
+
+        });
+
+        // Close menu after clicking a navigation link
+        navLinks.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navLinks.classList.remove("active");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+        // Reset mobile menu when switching to laptop layout
+        window.addEventListener("resize", function () {
+
+            if (window.innerWidth > 768) {
+
+                navLinks.classList.remove("active");
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuToggle.textContent = "☰";
+
+            }
+
+        });
+
+
+        /* CONTACT FORM VALIDATION */
+
+        const myForm =
+            document.getElementById("myForm");
+
+        if (myForm) {
+
+            myForm.addEventListener("submit", function (event) {
+
+                let isValid = true;
+
+                const name =
+                    document.getElementById("name").value.trim();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const phone =
+                    document.getElementById("phone").value.trim();
+
+                const message =
+                    document.getElementById("message").value.trim();
+
+                // Clear previous errors
+                document.querySelectorAll(".error").forEach(
+                    function (error) {
+                        error.textContent = "";
+                    }
+                );
+
+                document.getElementById("formMessage").textContent = "";
+
+                // Name validation
+                if (name.length < 3) {
+
+                    document.getElementById("nameError").textContent =
+                        "Name must be at least 3 characters.";
+
+                    isValid = false;
+
+                }
+
+                // Email validation
+                const emailRegex =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailRegex.test(email)) {
+
+                    document.getElementById("emailError").textContent =
+                        "Please enter a valid email address.";
+
+                    isValid = false;
+
+                }
+
+                // Phone validation
+                const phoneRegex = /^[0-9]{10,15}$/;
+
+                if (!phoneRegex.test(phone)) {
+
+                    document.getElementById("phoneError").textContent =
+                        "Enter a phone number with 10-15 digits.";
+
+                    isValid = false;
+
+                }
+
+                // Message validation
+                if (message.length === 0) {
+
+                    document.getElementById("messageError").textContent =
+                        "Please enter your message.";
+
+                    isValid = false;
+
+                }
+
+                // Stop submission if invalid
+                if (!isValid) {
+
+                    event.preventDefault();
+
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>
