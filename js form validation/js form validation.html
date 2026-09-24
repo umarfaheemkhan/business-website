@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Form Validation</title>
+<style>
+body{
+font-family:Arial, sans-serif;
+background:pink;
+margin:20px;
+}
+.container{
+width:700px;
+margin:auto;
+background:cornflowerblue;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+h1{
+text-align:center;
+}
+label{
+font-weight:bold;
+}
+input,select,textarea{
+width:100%;
+padding:8px;
+margin-top:5px;
+margin-bottom:15px;
+box-sizing:border-box;
+}
+textarea{
+resize:vertical;
+}
+button{
+padding:10px 20px;
+font-size:16px;
+cursor:pointer;
+}
+.error{
+color:red;
+font-size:14px;
+margin-top:-10px;
+margin-bottom:10px;
+}
+.success{
+color:green;
+font-size:20px;
+text-align:center;
+font-weight:bold;
+}
+.inline{
+width:auto;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>JavaScript Form Validation</h1>
+<form id="myForm">
+<label>Full Name</label>
+<input type="text" id="name">
+<div id="nameError" class="error"></div>
+<label>Email</label>
+<input type="email" id="email">
+<div id="emailError" class="error"></div>
+<label>Password</label>
+<input type="password" id="password">
+<div id="passwordError" class="error"></div>
+<label>Confirm Password</label>
+<input type="password" id="confirmPassword">
+<div id="confirmPasswordError" class="error"></div>
+<label>Age</label>
+<input type="number" id="age">
+<div id="ageError" class="error"></div>
+<label>Phone Number</label>
+<input type="tel" id="phone">
+<div id="phoneError" class="error"></div>
+<label>Website URL</label>
+<input type="url" id="website">
+<div id="websiteError" class="error"></div>
+<label>Date of Birth</label>
+<input type="date" id="dob">
+<div id="dobError" class="error"></div>
+<label>Favorite Color</label>
+<input type="color" id="color">
+<label>Upload Profile Picture</label>
+<input type="file" id="photo">
+<div id="photoError" class="error"></div>
+<label>Gender</label><br>
+<input class="inline" type="radio" name="gender" value="Male"> Male
+<input class="inline" type="radio" name="gender" value="Female"> Female
+<input class="inline" type="radio" name="gender" value="Other"> Other
+<div id="genderError" class="error"></div>
+<label>Skills</label><br>
+<input class="inline" type="checkbox" name="skills" value="HTML"> HTML
+<input class="inline" type="checkbox" name="skills" value="CSS"> CSS
+<input class="inline" type="checkbox" name="skills" value="JavaScript">
+JavaScript
+<div id="skillsError" class="error"></div>
+<label>Country</label>
+<select id="country">
+<option value="">Select Country</option>
+<option>Pakistan</option>
+<option>China</option>
+<option>Turkey</option>
+<option>Malaysia</option>
+</select>
+<div id="countryError" class="error"></div>
+<label>Address</label>
+<textarea id="address"></textarea>
+<div id="addressError" class="error"></div>
+<input class="inline" type="checkbox" id="terms">
+I agree to Terms & Conditions
+<div id="termsError" class="error"></div>
+<br><br>
+<button type="submit">
+Submit Form
+</button>
+</form>
+<div id="successMessage"></div>
+</div>
+<script>
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let isValid = true;
+    function setError(id, message) {
+        document.getElementById(id).textContent = message;
+        isValid = false;
+    }
+    function clearErrors() {
+        document.querySelectorAll(".error").forEach(error => {
+            error.textContent = "";
+        });
+    }
+    clearErrors();
+    const name = document.getElementById("name").value.trim();
+    if (name === "") {
+        setError("nameError", "Full name is required.");
+    } else if (name.length < 3) {
+        setError("nameError", "Name must be at least 3 characters long.");
+    }
+    const email = document.getElementById("email").value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email === "") {
+        setError("emailError", "Email is required.");
+    } else if (!emailRegex.test(email)) {
+        setError("emailError", "Please enter a valid email address.");
+    }
+    const password = document.getElementById("password").value;
+
+    if (password === "") {
+        setError("passwordError", "Password is required.");
+    } else if (password.length < 6) {
+        setError("passwordError", "Password must be at least 6 characters.");
+    }
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (confirmPassword === "") {
+        setError("confirmPasswordError", "Please confirm your password.");
+    } else if (password !== confirmPassword) {
+        setError("confirmPasswordError", "Passwords do not match.");
+    }
+    const age = Number(document.getElementById("age").value);
+
+    if (isNaN(age)) {
+        setError("ageError", "Age is required.");
+    } else if (age < 18 || age > 100) {
+        setError("ageError", "Age must be between 18 and 100.");
+    }
+    const phone = document.getElementById("phone").value.trim();
+    const phoneRegex = /^[0-9]{10,15}$/;
+
+    if (phone === "") {
+        setError("phoneError", "Phone number is required.");
+    } else if (!phoneRegex.test(phone)) {
+        setError("phoneError", "Enter a valid phone number (10–15 digits).");
+    }
+    const website = document.getElementById("website").value.trim();
+    const urlRegex = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/.*)?$/i;
+
+    if (website === "") {
+        setError("websiteError", "Website URL is required.");
+    } else if (!urlRegex.test(website)) {
+        setError("websiteError", "Please enter a valid URL.");
+    }
+    const dob = document.getElementById("dob").value;
+
+    if (dob === "") {
+        setError("dobError", "Date of birth is required.");
+    }
+    const photo = document.getElementById("photo");
+
+    if (photo.files.length === 0) {
+        setError("photoError", "Please upload a profile picture.");
+    } else {
+        const allowedExtensions = /\.(jpg|jpeg|png)$/i;
+        if (!allowedExtensions.test(photo.files[0].name)) {
+            setError("photoError", "Only JPG, JPEG, and PNG files are allowed.");
+        }
+    }
+    const genderOptions = document.getElementsByName("gender");
+    let genderSelected = false;
+
+    for (const option of genderOptions) {
+        if (option.checked) {
+            genderSelected = true;
+            break;
+        }
+    }
+
+    if (!genderSelected) {
+        setError("genderError", "Please select your gender.");
+    }
+    const skillOptions = document.getElementsByName("skills");
+    let skillSelected = false;
+
+    for (const option of skillOptions) {
+        if (option.checked) {
+            skillSelected = true;
+            break;
+        }
+    }
+
+    if (!skillSelected) {
+        setError("skillsError", "Please select at least one skill.");
+    }
+    const country = document.getElementById("country").value;
+
+    if (country === "") {
+        setError("countryError", "Please select your country.");
+    }
+    const address = document.getElementById("address").value.trim();
+
+    if (address === "") {
+        setError("addressError", "Address is required.");
+    }
+    const terms = document.getElementById("terms").checked;
+
+    if (!terms) {
+        setError("termsError", "You must agree to the Terms & Conditions.");
+    }
+    if (isValid) {
+        alert("Form submitted successfully!");
+    }
+});
+</script>
+</body>
+</html>
